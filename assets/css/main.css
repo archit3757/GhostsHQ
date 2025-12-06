@@ -1,30 +1,186 @@
-@font-face {
-  font-family: 'Hitmarker';
-  src: url('fonts/HitmarkerText-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
+* {
+  box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'Hitmarker';
-  src: url('fonts/HitmarkerText-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+html {
+  scroll-behavior: smooth;
 }
 
-html{
+html,
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
   background-color: #050505;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Rajdhani", sans-serif;
+  cursor: url("../images/cursor.png"), auto;
 }
-.game-image,
-img {
+
+body {
+  position: relative;
+}
+
+/* Advanced cursor highlight system for visibility on dark backgrounds */
+.cursor-highlight {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+  mix-blend-mode: screen;
+  filter: blur(12px);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.9),
+    0 0 70px rgba(255, 255, 255, 0.7), 0 0 100px rgba(255, 255, 255, 0.5),
+    0 0 130px rgba(255, 255, 255, 0.3);
+  will-change: transform, opacity;
+}
+
+/* Additional outer ring for maximum visibility */
+.cursor-highlight::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+    inset 0 0 30px rgba(255, 255, 255, 0.3);
+  filter: blur(4px);
+}
+
+/* Enhanced white glow for better cursor visibility */
+html,
+body {
+  cursor: url("../images/cursor.png"), auto;
+  position: relative;
+}
+
+/* Custom cursor for interactive elements */
+a,
+button,
+.menu-toggle,
+.nav-button,
+.xbox-join,
+.game-card,
+.card-link {
+  cursor: url("../images/cursor.png"), pointer;
+}
+
+/* Enhanced white glow effect for better cursor visibility on dark backgrounds */
+a:hover,
+button:hover,
+.menu-toggle:hover,
+.nav-button:hover,
+.xbox-join:hover,
+.game-card:hover,
+.card-link:hover,
+#nav-left p:hover {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 1),
+    0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+button:hover,
+.nav-button:hover,
+.xbox-join:hover,
+.menu-toggle:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9),
+    0 0 45px rgba(255, 255, 255, 0.6), 0 0 65px rgba(255, 255, 255, 0.4),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.game-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.7),
+    0 0 50px rgba(255, 255, 255, 0.5), 0 0 70px rgba(255, 255, 255, 0.3);
+}
+
+/* Add white glow to all interactive elements for cursor visibility */
+a,
+button,
+.menu-toggle,
+.nav-button,
+.xbox-join,
+.game-card,
+.card-link,
+#nav-left p {
+  position: relative;
+}
+
+/* Enhanced white glow ring that appears on hover for better cursor visibility */
+a:hover::before,
+button:hover::before,
+.menu-toggle:hover::before,
+.nav-button:hover::before,
+.xbox-join:hover::before,
+.game-card:hover::before,
+.card-link:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 75%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  filter: blur(10px);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8),
+    0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+  mix-blend-mode: screen;
+}
+
+/* Additional outer glow ring for maximum visibility */
+a:hover::after,
+button:hover::after,
+.menu-toggle:hover::after,
+.nav-button:hover::after,
+.xbox-join:hover::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure images don't overflow */
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
 }
+/* Image styles moved to top */
 
 #hero {
   position: relative;
@@ -43,6 +199,8 @@ img {
   object-fit: cover;
   object-position: center;
   z-index: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #hero::after {
@@ -91,8 +249,10 @@ img {
 #nav-bar {
   position: absolute;
   top: 0;
-  left: 16%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 68%;
+  max-width: 1200px;
   height: 47px;
   background-color: rgba(20, 20, 20, 0.6);
   display: flex;
@@ -114,21 +274,31 @@ img {
   width: 40px;
   height: 40px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 6px;
   padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
+  color: white;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid #b2ffba;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .menu-toggle span {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: white;
-  border-radius: 2px;
+  display: none;
 }
 
 .menu-dropdown {
@@ -151,7 +321,10 @@ img {
   font-size: 14px;
   padding: 8px 18px;
   text-transform: uppercase;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Rajdhani", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu-dropdown a:hover {
@@ -175,7 +348,7 @@ img {
 }
 
 #nav-right .nav-button {
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -186,6 +359,9 @@ img {
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 #nav-right .nav-button.nav-ghost {
@@ -199,9 +375,16 @@ img {
   font-weight: 600;
 }
 
-#nav-right .nav-button:hover {
+#nav-right .nav-button:hover,
+#nav-right .nav-button:focus {
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  outline: none;
+}
+
+#nav-right .nav-button:focus-visible {
+  outline: 2px solid #b2ffba;
+  outline-offset: 2px;
 }
 
 #logo {
@@ -215,7 +398,13 @@ img {
   color: white;
   font-size: 18px;
   font-weight: 100;
-  cursor: pointer;
+  cursor: url("../images/cursor.png"), pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+#nav-left p:hover {
+  color: #b2ffba;
 }
 
 #after-hero {
@@ -223,8 +412,7 @@ img {
   min-height: 170px;
   width: 100%;
   margin: -40px 0 0;
-  background:
-  linear-gradient(180deg, #1f2124 0%, #2d3035 40%, #3b3f45 100%);
+  background: linear-gradient(180deg, #1f2124 0%, #2d3035 40%, #3b3f45 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -235,6 +423,7 @@ img {
   z-index: 4;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 #after-hero::before,
@@ -269,6 +458,8 @@ img {
   position: relative;
   z-index: 1;
   transform: translateY(-35px);
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
 .after-hero-block {
@@ -301,12 +492,13 @@ img {
 }
 
 .xbox {
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 18px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0;
   color: #c9f7c1;
+  font-weight: 700;
 }
 
 .xbox-text {
@@ -317,7 +509,7 @@ img {
 }
 
 .xbox-join {
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -329,17 +521,30 @@ img {
   color: #051505;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
 }
 
-.xbox-join:hover {
+.xbox-join:hover,
+.xbox-join:focus {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(88, 211, 72, 0.5);
+  outline: none;
+}
+
+.xbox-join:focus-visible {
+  outline: 2px solid #58d348;
+  outline-offset: 2px;
 }
 
 @media (max-width: 1024px) {
   #nav-bar {
-    left: 8%;
-    width: 84%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: none;
   }
 
   .hero-content {
@@ -349,12 +554,19 @@ img {
   .after-hero-content {
     transform: translateY(-20px);
   }
+
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
 }
 
 @media (max-width: 768px) {
   #nav-bar {
-    left: 2%;
-    width: 96%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: none;
     height: 44px;
     padding: 0 14px;
   }
@@ -372,6 +584,7 @@ img {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    padding: 0 15px;
   }
 
   .block-left,
@@ -381,12 +594,23 @@ img {
     min-width: 100%;
     text-align: center;
   }
+
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  #after-hero {
+    padding: 26px 20px;
+  }
 }
 
 @media (max-width: 480px) {
   #nav-bar {
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: none;
     height: 42px;
     padding: 0 10px;
   }
@@ -412,6 +636,11 @@ img {
   .after-hero-content {
     gap: 14px;
     transform: translateY(-10px);
+    padding: 0 15px;
+  }
+
+  #after-hero {
+    padding: 26px 15px;
   }
 
   .xbox {
@@ -426,6 +655,11 @@ img {
     padding: 12px 22px;
     font-size: 12px;
   }
+
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .site-container {
@@ -434,13 +668,17 @@ img {
   margin: 0 auto;
   padding: 0 24px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 #get-the-game {
   width: 100%;
+  max-width: 100%;
   background-color: #050505;
   color: #f5f5f5;
   padding: 80px 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 #get-the-game .site-container {
@@ -457,15 +695,16 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #ffffff;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 32px;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .game-card {
@@ -479,13 +718,21 @@ img {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .game-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   border-color: #2f2f2f;
+}
+
+.game-card .game-image {
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-image {
+  transform: scale(1.05);
 }
 
 .game-image {
@@ -500,7 +747,7 @@ img {
   font-weight: 600;
   margin: 24px 28px 10px;
   color: #ffffff;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .game-title-small {
@@ -522,18 +769,13 @@ img {
   margin: 0 28px 28px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-family: 'Hitmarker', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 @media (max-width: 768px) {
   .get-game-title {
     font-size: 32px;
     margin-bottom: 40px;
-  }
-
-  .games-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
   }
 
   .game-card {
@@ -569,11 +811,6 @@ img {
     margin-bottom: 30px;
   }
 
-  .games-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-
   .game-card {
     border-radius: 8px;
   }
@@ -597,10 +834,14 @@ img {
   }
 }
 
-.news-feature, .site-footer {
+.news-feature,
+.site-footer {
   width: 100%;
+  max-width: 100%;
   background-color: #050505;
   color: #f5f5f5;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .news-feature {
@@ -618,6 +859,12 @@ img {
   background-color: #111214;
   padding: 32px;
   border: 1px solid #1f1f1f;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: #3f3f3f;
 }
 
 .feature-card h2 {
@@ -637,6 +884,12 @@ img {
   background-color: #0c0d0f;
   padding: 24px;
   border: 1px solid #1f1f1f;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.side-card:hover {
+  transform: translateY(-2px);
+  border-color: #3f3f3f;
 }
 
 .side-card h3 {
@@ -660,7 +913,9 @@ img {
 }
 
 .card-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-top: 16px;
   color: #ffffff;
   text-transform: uppercase;
@@ -669,6 +924,20 @@ img {
   text-decoration: none;
   border-bottom: 1px solid #ffffff;
   padding-bottom: 4px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  transition: gap 0.2s ease;
+}
+
+.card-link:hover,
+.card-link:focus {
+  gap: 10px;
+  outline: none;
+}
+
+.card-link:focus-visible {
+  outline: 2px solid #b2ffba;
+  outline-offset: 2px;
 }
 
 .site-footer {
@@ -695,4 +964,12 @@ img {
   color: #9da2aa;
   text-decoration: none;
   font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
 }
